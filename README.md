@@ -47,10 +47,10 @@ From the terminal, call the R interpreter (`Rscript`), followed by the script fi
 Example: 
 
 ```{console}
-/usr/local/bin/Rscript harfile-output.R my_har_file.har 
+/Rscript harfile-output.R my_har_file.har 
 ```
 
-Depending on what you see when typing `which Rscript`, you can typically call `/usr/local/bin/Rscript` if the call to `Rscript` causes any problems.
+Depending on what you see when typing `which Rscript`, you can typically call `/usr/local/bin/Rscript` if the call to `Rscript` doesn't work as expected.
 
 You must only supply a single argument to a .har file after calling the R script. 
 
