@@ -54,6 +54,15 @@ Depending on what you see when typing `which Rscript`, you can typically call `/
 
 You must only supply a single argument to a .har file after calling the R script. 
 
+## First run - package installs
+
+On first running, it's likely that you will need to install several packages in order to successfully run the script. This is initiated by lines 1-5 in [harfile-output.R](./harfile-output.R).
+
+
+Packages are the R language's equivalent of python modules and provide useful functionality for data munging, .har file reading and plotting in this case. You can [read further information about R packages at this link.](https://www.tutorialspoint.com/r/r_packages.htm)
+
+The first time the script runs, it will need to download the package source code from a repository and then install the package for use. This may take a minute or so. If you use the script again, the packages should be called within the script without any wait for a download.
+
 ## Output
 
 If successful, the script should create the following new files:
