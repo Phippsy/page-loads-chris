@@ -7,7 +7,7 @@ output: html_document
 
 ## An r-script to plot and simplify HAR file data
 
-This script reads in data from an HTTP ARchive format, pulls out some key data and creates a few simple plots to help understand those requests which appear to be occupying the most time during page load.
+This script reads in data from an HTTP ARchive format, pulls out some key variables and creates a few simple plots to help understand those requests which appear to be occupying the most time during page load.
 
 It reads in the following variables from the .har file: 
 
