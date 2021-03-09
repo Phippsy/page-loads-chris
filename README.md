@@ -58,10 +58,10 @@ You must only supply a single argument to a .har file after calling the R script
 
 If successful, the script should create the following new files:
 
-1. "tabular_har_{pagename}.csv": a csv containing each of the variables which have been selected from the source .har file
-2. "scatter_{pagename}.png": a scatterplot which charts each request, showing response size on the X axis and download time on the Y axis. 
-3. "scatter_{pagename}_top20.png": a scatterplot based on #2, which has been filtered to show only the top 20 requests (theoretically, the "worst offenders") by response time.
-4. "requests_{pagename}.csv": a bar chart showing the aggregated time for requests, grouped by domain. This chart is intended to illustrate which domains are using the most request time during page download.
+1. "./tabular_har_{pagename}.csv": a csv containing each of the variables which have been selected from the source .har file
+2. "./scatter_{pagename}.png": a scatterplot which charts each request, showing response size on the X axis and download time on the Y axis. 
+3. "./scatter_{pagename}_top20.png": a scatterplot based on #2, which has been filtered to show only the top 20 requests (theoretically, the "worst offenders") by response time.
+4. "./requests_{pagename}.csv": a bar chart showing the aggregated time for requests, grouped by domain. This chart is intended to illustrate which domains are using the most request time during page download.
 
 ## Issues
 
