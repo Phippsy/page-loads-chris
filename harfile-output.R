@@ -37,13 +37,12 @@ get_harspeed <- function(file) {
 
 args_in <- commandArgs(trailingOnly = TRUE)
 file_safe <- stringr::str_replace_all(args_in, "^a-zA-Z0-9", "_")
-# print(length(args_in))
-# print(args_in)
 stopifnot("You must only supply one argument to this script" = length(args_in) == 1)
 
 har_df <- get_harspeed(args_in)
-  
-har_df %>% 
+page_safe <- str_replace_all(har_df$page[1], "[^a-zA-Z0-9]", "_")
+
+reqs <- har_df %>% 
     group_by(domain, mf_int) %>% 
     summarise(time = sum(time)) %>% 
     ungroup() %>% 
@@ -61,9 +60,7 @@ har_df %>%
           legend.text = element_text(size = 5), legend.title = element_text(size = 6)) +
   scale_fill_brewer()
 
-page_safe <- str_replace_all(har_df$page[1], "[^a-zA-Z0-9]", "_")
-
-ggsave(filename = paste0("requests_", page_safe, ".png"), width = 150, height = 180, units = "mm")
+ggsave(reqs, filename = paste0("requests_", page_safe, ".png"), width = 150, height = 180, units = "mm")
 
 top_df <- har_df %>% 
   filter(!str_detect(mf_int, "Mouse")) %>% 
@@ -76,19 +73,19 @@ top_df <- har_df %>%
     TRUE ~ domain
   ))
 
-interactive <- har_df %>% 
+scatter <- har_df %>% 
   ggplot(aes(response_size, time)) +
   geom_point() +
-  theme_bw() 
-
-interactive + geom_label_repel(data = top_df, aes(label = item)) +
+  theme_bw() + 
+  geom_label_repel(data = top_df, aes(label = item)) +
   labs(title = "Scatter of response size (x-axis) vs download time (y-axis), cytiva homepage",
        x = "Response size (B)", y = "Time (ms)") +
-  theme_bw() + scale_x_continuous(labels = comma)
+  theme_bw() + 
+  scale_x_continuous(labels = comma)
 
-ggsave(filename = paste0("scatter_", page_safe, ".png"), width = 450, height = 450, units = "mm")
+ggsave(scatter, filename = paste0("scatter_", page_safe, ".png"), width = 450, height = 450, units = "mm")
 
-top_df %>% 
+top_scatter <- top_df %>% 
   ggplot(aes(response_size, time)) +
   geom_point() +
   theme_bw() +
@@ -96,8 +93,10 @@ top_df %>%
   labs(title = "Scatter of response size (x-axis) vs download time (y-axis)\ntop 20 requests by response time",
        subtitle = paste0("Page: ", har_df$page[1]),
        x = "Response size (B)", y = "Time (ms)") +
-  theme_bw() + scale_x_continuous(labels = comma)
+  theme_bw() + 
+  scale_x_continuous(labels = comma)
 
-ggsave(filename = paste0("scatter_", page_safe, "_top20.png"), width = 350, height = 350, units = "mm")
+ggsave(top_scatter, filename = paste0("scatter_", page_safe, "_top20.png"), width = 350, height = 350, units = "mm")
+
 write_excel_csv(har_df, paste0("tabular_har_", page_safe, ".csv"))
  
