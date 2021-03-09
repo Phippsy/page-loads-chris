@@ -11,13 +11,13 @@ This script reads in data from an HTTP ARchive format, pulls out some key variab
 
 It reads in the following variables from the .har file: 
 
-- url: the URL of the request
-- time: the time (in ms) taken to 
-- request_method: the type of HTTP request method (/verb)
-- response_size: the size, in bytes, of the given request
-- page: the page from which the request was initated
-- domain: the domain of the request. This is extracted by the script from the request url
-- mf_int: ("Mouseflow Interactive") - does this request appear to be made by Mouseflow in response to user interactions with the page (i.e. it may not represent the page weight, only the time and size used for Mouseflow to track user behaviour on the page). The assumption is made that any requests made to the domain mouseflow.com, followed by 'dom' or 'events' may be Mouseflow Interactive requests
+- **url**: the URL of the request
+- **time**: the time (in ms) taken to complete the request
+- **request_method**: the type of HTTP request method (/verb)
+- **response_size**: the size, in bytes, of the given request
+- **page**: the page from which the request was initated
+- **domain**: the domain of the request. This is extracted by the script from the request url
+- **mf_int**: ("Mouseflow Interactive") - does this request appear to be made by Mouseflow in response to user interactions with the page (i.e. it may not represent the page weight, only the time and size used for Mouseflow to track user behaviour on the page). The assumption is made that any requests made to the domain mouseflow.com, followed by 'dom' or 'events' may be Mouseflow Interactive requests
 
 [Read more about generating .har files](https://confluence.atlassian.com/kb/generating-har-files-and-analyzing-web-requests-720420612.html)
 
